@@ -1,0 +1,28 @@
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_name VARCHAR(255),
+    customer_email VARCHAR(255),
+    customer_phone VARCHAR(50),
+    total_amount DECIMAL(10,2),
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT,
+    product_id INT,
+    product_title VARCHAR(255),
+    quantity INT,
+    price DECIMAL(10,2),
+    subtotal DECIMAL(10,2),
+    FOREIGN KEY(order_id) REFERENCES orders(id)
+);
